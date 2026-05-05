@@ -1,6 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "echo 0",
   "rewrites": [
     {
       "source": "/notion-api/(.*)",

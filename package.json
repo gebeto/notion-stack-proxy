@@ -1,11 +1,13 @@
 {
-  "name": "notion-stack-proxy",
-  "type": "module",
-  "version": "1.0.0",
   "repository": "https://github.com/gebeto/notion-stack-proxy",
-  "author": "gebeto <slavik.nychkalo@gmail.com>",
   "license": "MIT",
+  "name": "notion-stack-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "author": "gebeto <slavik.nychkalo@gmail.com>",
   "dependencies": {
-    "@vercel/fetch": "^6.2.0"
+    "@vercel/fetch": "^6.2.0",
+    "cors": "^2.8.6",
+    "http-proxy-middleware": "^2.0.9"
   }
 }

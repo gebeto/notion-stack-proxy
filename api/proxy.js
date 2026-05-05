@@ -29,8 +29,8 @@ const proxy = createProxyMiddleware({
 
 const corsFunc = cors({ origin: true });
 
-const prefix = "/notion-api"
 module.exports = (req, res) => {
+  let prefix = "/notion-api"
   if (!req.url.startsWith(prefix)) {
     return;
   }
