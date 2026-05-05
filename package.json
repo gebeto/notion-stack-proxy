@@ -6,7 +6,6 @@
   "private": true,
   "author": "gebeto <slavik.nychkalo@gmail.com>",
   "dependencies": {
-    "@vercel/fetch": "^6.2.0",
     "cors": "^2.8.6",
     "http-proxy-middleware": "^2.0.9"
   }

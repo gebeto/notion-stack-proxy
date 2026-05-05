@@ -1,6 +1,9 @@
-const { createProxyMiddleware } = require('http-proxy-middleware');
-const cors = require('cors');
-const API_NOTION = "https://api.notion.com"
+import { createProxyMiddleware } from 'http-proxy-middleware';
+import cors from 'cors';
+import { IncomingMessage, ServerResponse } from 'http';
+import { ClientRequest } from 'http';
+
+const API_NOTION = "https://api.notion.com";
 
 function onRequest(preq, req) {
   const headers = preq.getHeaderNames();
@@ -8,11 +11,13 @@ function onRequest(preq, req) {
     if (header.startsWith('x-')) {
       preq.removeHeader(header);
     }
-  })
+  });
 }
 
 function onResponse(pres) {
-  pres.headers["Access-Control-Allow-Origin"] = "*";
+  if (pres.headers) {
+    pres.headers["Access-Control-Allow-Origin"] = "*";
+  }
 }
 
 const proxy = createProxyMiddleware({
@@ -30,15 +35,15 @@ const proxy = createProxyMiddleware({
 const corsFunc = cors({ origin: true });
 
 module.exports = (req, res) => {
-  let prefix = "/notion-api"
+  const prefix = "/notion-api";
   if (!req.url.startsWith(prefix)) {
     return;
   }
 
-  if (req.method == 'OPTIONS') {
-    corsFunc(req, res);
+  if (req.method === 'OPTIONS') {
+    corsFunc(req, res, () => {});
     return;
   }
 
-  proxy(req, res);
-}
+  proxy(req, res, () => {});
+};
